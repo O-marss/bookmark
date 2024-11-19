@@ -6,10 +6,10 @@
 body{
     margin: 0;
     padding: 0;
-    min-height: 100%;
-    background-color: #272829
-;}
-
+    min-height: 100vh;
+    background: linear-gradient(110.6deg, rgb(156, 116, 129) -18.3%, rgb(67, 54, 74) 16.4%, rgb(47, 48, 67) 68.2%, rgb(27, 23, 36) 99.1%);
+    font-family: "Kanit", sans-serif;
+}
 
 h1,
 h2,
@@ -20,25 +20,271 @@ h6{
     text-transform: capitalize;
 }
 
-
-#bookmark-wrapper{
-    background: linear-gradient(-180deg, #BCC5CE 0%, #929EAD 98%), radial-gradient(at top left, rgba(255,255,255,0.30) 0%, rgba(0,0,0,0.30) 100%);
-    background-blend-mode: screen;
+#main-title{
+    position: relative;
+    font-family: "Fascinate", system-ui;
+    color: #dacab8;
+    font-size: 3.3rem;
+    font-weight: 400;
+    font-style: normal;
+    width: fit-content;
+    margin-inline: auto;
 }
 
-.parent {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr) 0;
-    grid-template-rows: repeat(5, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+#main-title::after{
+    content: "";
+    position: absolute;
+    bottom: 15%;
+    left: 0;
+    right: 0;   
+    height: 20px;
+    background-color: #A78295;
+    z-index: -1;
+}
+
+#first-o{
+    display: inline-block;
+    text-transform: lowercase;
+}
+
+#sub-title{
+    font-family: "Rubik Mono One", monospace;
+    font-size: 1.2rem;
+    color: #A78295; 
+    background-image: linear-gradient(90deg, #A78295 51%, #FFC94A 98%, #FFC94A 89%); 
+    background-clip: text; 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+}
+
+#bookmark-wrapper{
+    background: radial-gradient(343px at 46.3% 47.5%, rgb(242, 242, 242) 0%, rgb(241, 241, 241) 72.9%);
+}
+
+#inputs-wrapper label{
+    font-size: 1rem;
+}
+
+#inputs-wrapper label span .fas{
+    font-size: 1rem;
+}
+
+#inputs-wrapper span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+
+#inputs-wrapper input:focus{
+    border-color: rgb(27, 23, 36);
+    box-shadow: 0 0 0 .25rem rgba(27, 23, 36, 0.623);
+}
+
+/* From Uiverse.io by MuhammadHasann */ 
+.button {
+    --black-700: hsla(0 0% 12% / 1);
+    --border_radius: 9999px;
+    --transtion: 0.3s ease-in-out;
+    --offset: 2px;
+  
+    cursor: pointer;
+    position: relative;
+  
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  
+    transform-origin: center;
+  
+    padding: 1rem 2rem;
+    background-color: transparent;
+  
+    border: none;
+    border-radius: var(--border_radius);
+    transform: scale(calc(1 + (var(--active, 0) * 0.1)));
+  
+    transition: transform var(--transtion);
+  }
+  
+  .button::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  
+    width: 100%;
+    height: 100%;
+    background-color: var(--black-700);
+  
+    border-radius: var(--border_radius);
+    box-shadow: inset 0 0.5px hsl(0, 0%, 100%), inset 0 -1px 2px 0 hsl(0, 0%, 0%),
+      0px 4px 10px -4px hsla(0 0% 0% / calc(1 - var(--active, 0))),
+      0 0 0 calc(var(--active, 0) * 0.375rem) rgba(47, 48, 67, 0.75);
+  
+    transition: all var(--transtion);
+    z-index: 0;
+  }
+  
+  .button::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  
+    width: 100%;
+    height: 100%;
+    background-color:rgba(47, 48, 67, 0.75);
+    background-image: radial-gradient(
+        at 51% 89%,
+        rgb(111, 92, 121) 0px,
+        transparent 50%
+      ),
+      radial-gradient(at 100% 100%, rgb(67, 54, 74) 0px, transparent 50%),
+      radial-gradient(at 22% 91%, rgb(67, 54, 74) 0px, transparent 50%);
+    background-position: top;
+  
+    opacity: var(--active, 0);
+    border-radius: var(--border_radius);
+    transition: opacity var(--transtion);
+    z-index: 2;
+  }
+  
+  .button:is(:hover, :focus-visible) {
+    --active: 1;
+  }
+  .button:active {
+    transform: scale(1);
+  }
+  
+  .button .dots_border {
+    --size_border: calc(100% + 2px);
+  
+    overflow: hidden;
+  
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  
+    width: var(--size_border);
+    height: var(--size_border);
+    background-color: transparent;
+  
+    border-radius: var(--border_radius);
+    z-index: -10;
+  }
+  
+  .button .dots_border::before {
+    content: "";
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: left;
+    transform: rotate(0deg);
+  
+    width: 100%;
+    height: 2rem;
+    background-color: #000;
+  
+    mask: linear-gradient(transparent 0%, white 120%);
+    animation: rotate 2s linear infinite;
+  }
+  
+  @keyframes rotate {
+    to {
+      transform: rotate(360deg);
     }
-    
-    .div1 { grid-area: 1 / 1 / 2 / 2; }
-    .div2 { grid-area: 1 / 2 / 2 / 3; }
-    .div3 { grid-area: 1 / 3 / 2 / 4; }
-    .div4 { grid-area: 1 / 4 / 2 / 5; }
-    .div5 { grid-area: 2 / 1 / 3 / 2; }
-    .div6 { grid-area: 2 / 2 / 3 / 3; }
-    .div7 { grid-area: 2 / 3 / 3 / 4; }
-    .div8 { grid-area: 2 / 4 / 3 / 5; }
+  }
+  
+  .button .sparkle {
+    position: relative;
+    z-index: 10;
+  
+    width: 1.75rem;
+  }
+  
+  .button .sparkle .path {
+    fill: currentColor;
+    stroke: currentColor;
+  
+    transform-origin: center;
+  
+    color: hsl(0, 0%, 100%);
+  }
+  
+  .button:is(:hover, :focus) .sparkle .path {
+    animation: path 1.5s linear 0.5s infinite;
+  }
+  
+  .button .sparkle .path:nth-child(1) {
+    --scale_path_1: 1.2;
+  }
+  .button .sparkle .path:nth-child(2) {
+    --scale_path_2: 1.2;
+  }
+  .button .sparkle .path:nth-child(3) {
+    --scale_path_3: 1.2;
+  }
+  
+  @keyframes path {
+    0%,
+    34%,
+    71%,
+    100% {
+      transform: scale(1);
+    }
+    17% {
+      transform: scale(var(--scale_path_1, 1));
+    }
+    49% {
+      transform: scale(var(--scale_path_2, 1));
+    }
+    83% {
+      transform: scale(var(--scale_path_3, 1));
+    }
+  }
+  
+  .button .text_button {
+    position: relative;
+    z-index: 10;
+  
+    background-image: linear-gradient(
+      90deg,
+      hsla(0 0% 100% / 1) 0%,
+      hsla(0 0% 100% / var(--active, 0)) 120%
+    );
+    background-clip: text;
+  
+    font-size: 1rem;
+    color: transparent;
+  }
+  
+
+  section .container table thead tr th{
+    background-color: #A78295;
+  }
+
+  section .container table tbody tr td{
+    vertical-align: middle;
+  }
+
+  section .container table tbody tr th{
+    vertical-align: middle;
+  }
+
+    table.table-striped>tbody>tr:nth-of-type(odd)>* {
+    background: radial-gradient(343px at 46.3% 47.5%, rgb(242, 242, 242) 0%, rgb(241, 241, 241) 72.9%);
+  }
+
+    table caption {
+    color: #fff;
+}
+
+    table thead tr th{
+    color: #fff !important;
+    font-weight: 500;
+}
