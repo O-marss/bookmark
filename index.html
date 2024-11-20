@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta
+      name="description"
+      content="A website that helps you to bookmark your favorite websites"
+    />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Fascinate&display=swap" rel="stylesheet">
+    <title>Bookmark</title>
+    <link rel="shortcut icon" type="image/x-icon" href="bookmark_icon.svg" />
 
-   
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Fascinate&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -35,7 +43,12 @@
       <header>
         <div class="container py-5">
           <div class="row">
-            <h1 id="main-title" class="col-12 text-center">b<span id="first-o" class=" animate__animated animate__flip animate__infinite animate__slower ">oo</span>kmarker</h1>
+            <h1 id="main-title" class="col-12 text-center">
+              b<span
+                class="animate__animated animate__flip animate__infinite animate__slower"
+                >oo</span
+              >kmarker
+            </h1>
           </div>
         </div>
       </header>
@@ -123,30 +136,75 @@
         </section>
 
         <section>
-            <div class="container text-center py-5 mt-5 rounded-2">
-                <table class="mx-auto table table-striped caption-top ta table-bordered">
-                    <caption><i class="fas fa-book-bookmark me-2 text-warning"></i>All Bookmarks</caption>
-                    <thead>
-                        <tr>
-                            <th  scope="col" width="10%">#</th>
-                            <th  scope="col"  width="40%">Website Name</th>
-                            <th  scope="col"  width="25%">Visit</th>
-                            <th  scope="col"  width="25%">Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody">
-                        <tr>
-                            <th scope="row">1</th>
-                            <td ></td>
-                            <td colspan="1"><a href="https://" class="btn btn-outline-primary"><i class="fas fa-eye me-2"></i>Visit</a></td>
-                            <td colspan="1"><button class="btn btn-outline-danger"><i class="fas fa-trash-alt me-2"></i>Delete</button></td>
-                        </tr>
-                    </tbody>
-                   
-                </table>
-            </div>
+          <div class="container text-center py-5 mt-5 rounded-2">
+            <table
+              class="mx-auto table table-striped caption-top ta table-bordered"
+            >
+              <caption>
+                <i class="fas fa-book-bookmark me-2 text-warning"></i
+                >All Bookmarks
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col" width="10%">#</th>
+                  <th scope="col" width="30%">Website Name</th>
+                  <th scope="col" width="30%">Visit</th>
+                  <th scope="col" width="30%">Delete</th>
+                </tr>
+              </thead>
+              <tbody id="tableBody">
+                <tr>
+                  <th scope="row">1</th>
+                  <td></td>
+                  <td colspan="1">
+                    <a href="https://" class="visit btn btn-sm"
+                      ><i class="fas fa-eye me-2"></i>Visit</a
+                    >
+                  </td>
+                  <td colspan="1">
+                    <button class="delete btn btn-sm btn-outline-danger">
+                      <i class="fas fa-trash-alt me-2"></i>Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </section>
       </main>
+    </div>
+    <div
+      id="errorWrapper"
+      class="error-wrapper position-fixed bg-dark bg-opacity-50 d-flex align-items-center d-none"
+    >
+      <div
+        id="error-box"
+        class="container position-relative bg-light p-5 text-center rounded-3 shadow"
+      >
+        <div class="row">
+          <div class="exit-icon position-absolute top-0 end-0 text-end mt-3">
+            <i id="exitIcon" class="fa-regular fa-rectangle-xmark fa-2x"></i>
+          </div>
+          <div class="error-icon col-12">
+            <i class="fa-solid fa-circle-exclamation fa-7x text-danger"></i>
+          </div>
+          <h3 class="col-12 h4 p-3">Somthing went wrong!</h3>
+          <ul class="">
+            <h4 class="h6 mb-4">Please follow the rules below :</h4>
+            <li class="mb-2 text-start">
+              <i class="fa-solid fa-circle-arrow-right me-3"></i>Site name must
+              contain at least 3 characters
+            </li>
+            <li class="mb-2 text-start">
+              <i class="fa-solid fa-circle-arrow-right me-3"></i>Site URL must
+              be a valid one
+            </li>
+          </ul>
+          <div id="tryBtn" class="col-12">
+            <button class="btn btn-danger">Try Again</button>
+          </div>
+        </div>
+      </div>
     </div>
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="js/index.js"></script>

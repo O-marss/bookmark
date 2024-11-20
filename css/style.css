@@ -20,6 +20,11 @@ h6{
     text-transform: capitalize;
 }
 
+ul,
+li{
+  list-style: none;
+}
+
 a,
 a:visited,
 a:active{
@@ -49,7 +54,7 @@ a:active{
     z-index: -1;
 }
 
-#first-o{
+#main-title span{
     display: inline-block;
     text-transform: lowercase;
 }
@@ -123,7 +128,7 @@ a:active{
   
     width: 100%;
     height: 100%;
-    background-color: var(--black-700);
+    background-color: #A78295;
   
     border-radius: var(--border_radius);
     box-shadow: inset 0 0.5px hsl(0, 0%, 100%), inset 0 -1px 2px 0 hsl(0, 0%, 0%),
@@ -266,13 +271,16 @@ a:active{
     );
     background-clip: text;
   
-    font-size: 1rem;
-    color: transparent;
+    font-size: .9rem;
+    font-weight: light;
+    color: #fff;
   }
   
 
   section .container table thead tr th{
     background-color: #A78295;
+    vertical-align: middle;
+
   }
 
   section .container table tbody tr td{
@@ -294,4 +302,42 @@ a:active{
     table thead tr th{
     color: #fff !important;
     font-weight: 500;
+}
+
+.visit{
+  color: #639cd9;
+  border-color: #639cd9;
+}
+
+.visit:hover{
+  color: #fff;
+  border-color: #fff;
+  background-color: #639cd9;
+}
+
+.delete{
+  color: #e97a7a;
+  border-color: #e97a7a;
+}
+
+.delete:hover{
+  color: #fff;
+  border-color: #fff;
+  background-color: #e97a7a;
+}
+
+.error-wrapper{
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.exit-icon i{
+  cursor: pointer;
+}
+
+.exit-icon i:hover {
+  border-color: red;
+  color: red;
 }

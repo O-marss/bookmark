@@ -18,14 +18,34 @@
     #inputs-wrapper label{
         font-size: 1.2rem;
     }
+
+    .btn-group-sm>.btn, .btn-sm{
+
+
+        
+          --bs-btn-padding-x: 0.75rem;
+    --bs-btn-padding-y: 0.375rem;
+    --bs-btn-font-size: 1rem;
+    --bs-btn-border-radius: var(--bs-border-radius);
+
+    }
+
+    #error-box{
+        width: 60%;
+    }
     
   }
 
 
   @media (min-width: 992px) {
     
-
+    #error-box{
+        width: 40%;
+    }
 }
 
   @media (min-width: 1200px) {
+    #error-box{
+        width: 25%;
+    }
  }
