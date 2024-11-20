@@ -50,7 +50,7 @@ function displayTable(arr){
                     <tr>
                         <th scope="row">${i+1}</th>
                         <td >${arr[i].name}</td>
-                        <td colspan="1"><button class="btn btn-outline-primary"><i class="fas fa-eye me-2"></i><a href="https://${arr[i].url}">Visit</a></button></td>
+                        <td colspan="1"><a href="https://${arr[i].url}" class="btn btn-outline-primary"><i class="fas fa-eye me-2"></i>Visit</a></td>
                         <td colspan="1"><button class="btn btn-outline-danger"><i class="fas fa-trash-alt me-2"></i>Delete</button></td>
                     </tr>
                 `
