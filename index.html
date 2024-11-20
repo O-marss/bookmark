@@ -50,7 +50,7 @@
               <div id="inputs-wrapper">
                 <div class="col-12">
                   <div class="mb-3">
-                    <label for="siteName" class="form-label"
+                    <label for="siteNameInput" class="form-label"
                       ><span class="me-2"
                         ><i class="fas fa-bookmark text-warning"></i></span
                       >Website Name</label
@@ -58,15 +58,16 @@
                     <input
                       type="text"
                       class="form-control"
-                      id="siteName"
+                      id="siteNameInput"
                       placeholder="Bookmark Name"
+                      oninput="validate(this)"
                     />
                   </div>
                 </div>
 
                 <div class="col-12">
                   <div class="mb-3">
-                    <label for="siteName" class="form-label"
+                    <label for="siteUrlInput" class="form-label"
                       ><span class="me-2"
                         ><i class="fas fa-link text-primary"></i></span
                       >Website URL</label
@@ -74,15 +75,16 @@
                     <input
                       type="text"
                       class="form-control"
-                      id="siteName"
+                      id="siteUrlInput"
                       placeholder="Website URL"
+                      oninput="validate(this)"
                     />
                   </div>
                 </div>
               </div>
             </div>
 
-            <button class="button mx-auto mt-2">
+            <button id="submit" class="button mx-auto mt-2">
               <div class="dots_border"></div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -132,18 +134,11 @@
                             <th  scope="col"  width="25%">Delete</th>
                         </tr>
                     </thead>
-                    <tbody >
+                    <tbody id="tableBody">
                         <tr>
                             <th scope="row">1</th>
-                            <td >Google</td>
-                            <td colspan="1"><button class="btn btn-outline-primary"><i class="fas fa-eye me-2"></i>Visit</button></td>
-                            <td colspan="1"><button class="btn btn-outline-danger"><i class="fas fa-trash-alt me-2"></i>Delete</button></td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">1</th>
-                            <td >Facebook</td>
-                            <td colspan="1"><button class="btn btn-outline-primary"><i class="fas fa-eye me-2"></i>Visit</button></td>
+                            <td ></td>
+                            <td colspan="1"><button class="btn btn-outline-primary"><i class="fas fa-eye me-2"></i><a href="https://">Visit</a></button></td>
                             <td colspan="1"><button class="btn btn-outline-danger"><i class="fas fa-trash-alt me-2"></i>Delete</button></td>
                         </tr>
                     </tbody>
