@@ -342,10 +342,10 @@ a:active{
   color: red;
 }
 
-#folderCaption{
+.folderCaption{
   cursor: pointer;
 }
 
-#sitesCaption{
+.sitesCaption{
   cursor: pointer;
 }

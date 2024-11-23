@@ -16,6 +16,10 @@ let addListInput = document.getElementById("addListInput");
 
 let foldersSection = document.getElementById("foldersSection");
 
+let eachFolderSection = document.getElementById('eachFolderSection')
+
+let eachFolderTable = document.getElementById('eachFolderTable')
+
 let sitesList = [];
 let folderList = [];
 
@@ -38,6 +42,13 @@ siteUrlInput.addEventListener("keyup", function (event) {
   }
 });
 
+addListInput.addEventListener("keyup", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    addSite();
+  }
+});
+
 if (localStorage.getItem("Sites List") !== null) {
   sitesList = JSON.parse(localStorage.getItem("Sites List"));
   displayAllSites(sitesList);
@@ -51,7 +62,7 @@ document.getElementById("exitIcon").addEventListener("click", exit);
 
 document.getElementById("tryBtn").addEventListener("click", exit);
 
-document.getElementById('folderCaption').addEventListener('click', function(event){
+document.querySelector('.folderCaption').addEventListener('click', function(event){
   foldersSection.classList.remove('d-none');
   foldersSection.classList.add('d-block')
   allSitesSection.classList.remove('d-block')
@@ -60,12 +71,11 @@ document.getElementById('folderCaption').addEventListener('click', function(even
 
 })
 
-document.getElementById('sitesCaption').addEventListener('click', function(event){
+document.querySelector('.sitesCaption').addEventListener('click', function(event){
   foldersSection.classList.remove('d-block');
   foldersSection.classList.add('d-none')
   allSitesSection.classList.remove('d-none')
   allSitesSection.classList.add('d-block')
-
 })
 
 function validate(e) {
@@ -112,7 +122,7 @@ function addFolder(obj) {
   };
   let folderCheck = false;
   if (addListInput.value) {
-     if (localStorage.getItem("Folders") !== null) {
+    if (localStorage.getItem("Folders") !== null) {
       for (const element of folderList) {
         if (folder.name === element.name) {
           element.listOfSites.push(obj);
@@ -154,8 +164,8 @@ function displayFolders(arr) {
                     <tr>
                       <th scope="row">${arr[i].name}</th>
                       <td colspan="1">
-                        <a href="https://" class="visit btn btn-sm"
-                          ><i class="fas fa-eye me-2"></i>Open</a
+                        <button class="visit btn btn-sm" onclick="openFolder(this)"
+                          ><i class="fas fa-eye me-2"></i>Open</button
                         >
                       </td>
                       <td colspan="1">
@@ -212,3 +222,38 @@ function checkDuplicate() {
   }
 }
 
+function displayEachFolder(arr){
+  let eachFolder = ``
+
+    eachFolder += ` <thead>
+                <tr>
+                  <th colspan="3">${arr.name}</th>
+                </tr>
+              </thead>
+              <tbody id="eachFolderBody">
+                <tr>
+                  <td>${arr.listOfSites.name}</td>
+                  <td>
+                    <a href="https://${
+                      arr.listOfSites.url}" class="visit btn btn-sm"
+                      ><i class="fas fa-eye me-2"></i>Visit</a
+                    >
+                  </td>
+                  <td>
+                    <button class="delete btn btn-sm btn-outline-danger">
+                      <i class="fas fa-trash-alt me-2"></i>Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>`
+  
+  eachFolderTable.innerHTML = eachFolder
+}
+
+function openFolder(){
+  foldersSection.classList.remove('d-block');
+  foldersSection.classList.add('d-none')
+  eachFolderSection.classList.remove('d-none')
+  eachFolderSection.classList.add('d-block')
+  displayEachFolder()
+}

@@ -202,7 +202,7 @@
               <div class="folderCaption">
                 <i class="fa-solid fa-folder text-warning me-2"></i>All Folders
               </div>
-              <div id="sitesCaption" >
+              <div id="sitesCaption" class="sitesCaption">
                 <i class="fas fa-book-bookmark me-2 text-warning"></i
                 >All Bookmarks
               </div>
@@ -224,6 +224,44 @@
                     >
                   </td>
                   <td colspan="1">
+                    <button class="delete btn btn-sm btn-outline-danger">
+                      <i class="fas fa-trash-alt me-2"></i>Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="eachFolderSection" class="d-none">
+          <div class="container text-center py-5 mt-5 rounded-2">
+            <table id="eachFolderTable"
+              class="mx-auto table table-striped caption-top ta table-bordered"
+            >
+            <div class="d-flex gap-5 text-light mb-2">
+              <div class="sitesCaption" >
+                <i class="fas fa-book-bookmark me-2 text-warning"></i
+                >All Bookmarks
+              </div>
+              <div class="folderCaption">
+                <i class="fa-solid fa-folder text-warning me-2"></i>All Folders
+              </div> 
+            </div>
+              <thead>
+                <tr>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
+              <tbody id="eachFolderBody">
+                <tr>
+                  <td></td>
+                  <td>
+                    <a href="https://" class="visit btn btn-sm"
+                      ><i class="fas fa-eye me-2"></i>Visit</a
+                    >
+                  </td>
+                  <td>
                     <button class="delete btn btn-sm btn-outline-danger">
                       <i class="fas fa-trash-alt me-2"></i>Delete
                     </button>
