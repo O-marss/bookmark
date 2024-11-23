@@ -94,6 +94,22 @@
                     />
                   </div>
                 </div>
+
+                <div class="col-12">
+                  <div class="mb-3">
+                    <label for="addList" class="form-label"
+                      ><span class="me-2"
+                        ><i class="fa-solid fa-folder-plus"></i></span
+                      >Add to Folder</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="addListInput"
+                      placeholder="Folder Name"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -135,15 +151,20 @@
           </div>
         </section>
 
-        <section>
+        <section id="allSitesSection" class="d-block">
           <div class="container text-center py-5 mt-5 rounded-2">
             <table
               class="mx-auto table table-striped caption-top ta table-bordered"
             >
-              <caption>
+            <div class="d-flex gap-5 text-light mb-2">
+              <div>
                 <i class="fas fa-book-bookmark me-2 text-warning"></i
                 >All Bookmarks
-              </caption>
+              </div>
+              <div id="folderCaption" class="folderCaption">
+                <i class="fa-solid fa-folder text-warning me-2"></i>All Folders
+              </div>
+            </div>
               <thead>
                 <tr>
                   <th scope="col" width="10%">#</th>
@@ -152,7 +173,7 @@
                   <th scope="col" width="30%">Delete</th>
                 </tr>
               </thead>
-              <tbody id="tableBody">
+              <tbody id="allSitesTable">
                 <tr>
                   <th scope="row">1</th>
                   <td></td>
@@ -171,6 +192,48 @@
             </table>
           </div>
         </section>
+
+        <section id="foldersSection" class="d-none">
+          <div class="container text-center py-5 mt-5 rounded-2">
+            <table
+              class="mx-auto table table-striped caption-top ta table-bordered"
+            >
+            <div class="d-flex gap-5 text-light mb-2">
+              <div class="folderCaption">
+                <i class="fa-solid fa-folder text-warning me-2"></i>All Folders
+              </div>
+              <div id="sitesCaption" >
+                <i class="fas fa-book-bookmark me-2 text-warning"></i
+                >All Bookmarks
+              </div>
+            </div>
+              <thead>
+                <tr>
+                  <th scope="col" width="40%">Folder Name</th>
+                  <th scope="col" width="30%">Open</th>
+                  <th scope="col" width="30%">Delete</th>
+                </tr>
+              </thead>
+              <tbody id="foldersTable">
+                <tr>
+                  <th scope="row"></th>
+                  <td></td>
+                  <td colspan="1">
+                    <a href="https://" class="visit btn btn-sm"
+                      ><i class="fas fa-eye me-2"></i>Visit</a
+                    >
+                  </td>
+                  <td colspan="1">
+                    <button class="delete btn btn-sm btn-outline-danger">
+                      <i class="fas fa-trash-alt me-2"></i>Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        
       </main>
     </div>
     <div

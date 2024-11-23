@@ -341,3 +341,11 @@ a:active{
   border-color: red;
   color: red;
 }
+
+#folderCaption{
+  cursor: pointer;
+}
+
+#sitesCaption{
+  cursor: pointer;
+}

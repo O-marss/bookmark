@@ -4,10 +4,20 @@ let siteUrlInput = document.getElementById("siteUrlInput");
 
 let submitBtn = document.getElementById("submit");
 
-let tableBody = document.getElementById("tableBody");
+let allSitesSection = document.getElementById('allSitesSection')
+
+let allSitesTable = document.getElementById("allSitesTable");
+
+let foldersTable = document.getElementById("foldersTable");
 
 let errorWrapper = document.getElementById("errorWrapper");
+
+let addListInput = document.getElementById("addListInput");
+
+let foldersSection = document.getElementById("foldersSection");
+
 let sitesList = [];
+let folderList = [];
 
 submitBtn.addEventListener(
   "click",
@@ -31,11 +41,33 @@ siteUrlInput.addEventListener("keyup", function (event) {
 
 if (localStorage.getItem("Sites List") !== null) {
   sitesList = JSON.parse(localStorage.getItem("Sites List"));
-  displayTable(sitesList);
+  displayAllSites(sitesList);
+}
+
+if (localStorage.getItem("Folders") !== null) {
+  folderList = JSON.parse(localStorage.getItem("Folders"));
 }
 
 document.getElementById("exitIcon").addEventListener("click", exit);
+
 document.getElementById("tryBtn").addEventListener("click", exit);
+
+document.getElementById('folderCaption').addEventListener('click', function(event){
+  foldersSection.classList.remove('d-none');
+  foldersSection.classList.add('d-block')
+  allSitesSection.classList.remove('d-block')
+  allSitesSection.classList.add('d-none')
+  displayFolders(folderList);
+
+})
+
+document.getElementById('sitesCaption').addEventListener('click', function(event){
+  foldersSection.classList.remove('d-block');
+  foldersSection.classList.add('d-none')
+  allSitesSection.classList.remove('d-none')
+  allSitesSection.classList.add('d-block')
+
+})
 
 function validate(e) {
   let siteRegex = {
@@ -64,8 +96,9 @@ function addSite() {
     siteUrlInput.classList.contains("is-valid")
   ) {
     checkDuplicate();
+    addFolder(sites);
     sitesList.push(sites);
-    displayTable(sitesList);
+    displayAllSites(sitesList);
     reset();
     localStorage.setItem("Sites List", JSON.stringify(sitesList));
   } else {
@@ -73,10 +106,32 @@ function addSite() {
   }
 }
 
-function displayTable(arr) {
-  let tableHtml = ``;
+function addFolder(obj) {
+  let folder = {
+    name: addListInput.value,
+    listOfSites: [],
+  };
+
+  if (addListInput.value) {
+    // if (localStorage.getItem("Folders") !== null) {
+    //   for (let i = 0; i < folderList.length; i++) {
+    //     if (folder.name === folderList[i].name) {
+    //       folderList[i].listOfSites.push(obj);
+    //       return folderList[i]
+    //     }else{return folder}
+    //   }
+    //   folderList.push(folder)
+    // } else{
+      folder.listOfSites.push(obj)
+      folderList.push(folder)}
+  // }
+  localStorage.setItem("Folders", JSON.stringify(folderList));
+}
+
+function displayAllSites(arr) {
+  let allSitesHtml = ``;
   for (let i = 0; i < arr.length; i++) {
-    tableHtml += `
+    allSitesHtml += `
                     <tr>
                         <th scope="row">${i + 1}</th>
                         <td >${arr[i].name}</td>
@@ -87,8 +142,32 @@ function displayTable(arr) {
                     </tr>
                 `;
   }
-  tableBody.innerHTML = tableHtml;
+  allSitesTable.innerHTML = allSitesHtml;
 }
+
+function displayFolders(arr) {
+  let foldersHtml = ``;
+  for (let i = 0; i < arr.length; i++) {
+    foldersHtml += `
+                    <tr>
+                      <th scope="row">${arr[i].name}</th>
+                      <td colspan="1">
+                        <a href="https://" class="visit btn btn-sm"
+                          ><i class="fas fa-eye me-2"></i>Open</a
+                        >
+                      </td>
+                      <td colspan="1">
+                        <button class="delete btn btn-sm btn-outline-danger" onclick="deleteFolder(${i})"
+                          <i class="fas fa-trash-alt me-2"></i>Delete
+                        </button>
+                      </td>
+                    </tr>
+                `;
+  }
+
+  foldersTable.innerHTML = foldersHtml;
+}
+
 
 function reset() {
   siteUrlInput.value = null;
@@ -105,7 +184,14 @@ function deleteSite(deleteIndex) {
   sitesList.splice(deleteIndex, 1);
   localStorage.setItem("Sites List", JSON.stringify(sitesList));
 
-  displayTable(sitesList);
+  displayAllSites(sitesList);
+}
+
+function deleteFolder(deleteIndex) {
+  folderList.splice(deleteIndex, 1);
+  localStorage.setItem("Folders", JSON.stringify(folderList));
+
+  displayFolders(folderList);
 }
 
 function exit() {
@@ -123,3 +209,4 @@ function checkDuplicate() {
     }
   }
 }
+
