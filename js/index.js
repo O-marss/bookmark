@@ -21,7 +21,6 @@ let folderList = [];
 
 submitBtn.addEventListener(
   "click",
-
   addSite
 );
 
@@ -111,20 +110,23 @@ function addFolder(obj) {
     name: addListInput.value,
     listOfSites: [],
   };
-
+  let folderCheck = false;
   if (addListInput.value) {
-    // if (localStorage.getItem("Folders") !== null) {
-    //   for (let i = 0; i < folderList.length; i++) {
-    //     if (folder.name === folderList[i].name) {
-    //       folderList[i].listOfSites.push(obj);
-    //       return folderList[i]
-    //     }else{return folder}
-    //   }
-    //   folderList.push(folder)
-    // } else{
+     if (localStorage.getItem("Folders") !== null) {
+      for (const element of folderList) {
+        if (folder.name === element.name) {
+          element.listOfSites.push(obj);
+          folderCheck = true;
+        } 
+      }
+      if(!folderCheck){
+        folder.listOfSites.push(obj)
+        folderList.push(folder)
+      }
+    } else{
       folder.listOfSites.push(obj)
       folderList.push(folder)}
-  // }
+  }
   localStorage.setItem("Folders", JSON.stringify(folderList));
 }
 
@@ -164,7 +166,6 @@ function displayFolders(arr) {
                     </tr>
                 `;
   }
-
   foldersTable.innerHTML = foldersHtml;
 }
 
