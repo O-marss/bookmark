@@ -110,7 +110,6 @@ function deleteSite(deleteIndex) {
 
 function exit() {
   errorWrapper.classList.add("d-none");
-  reset();
 }
 
 function displayError() {
