@@ -172,6 +172,7 @@ function displayFolders(arr) {
 function reset() {
   siteUrlInput.value = null;
   siteNameInput.value = null;
+  addListInput.value = null;
 
   siteNameInput.classList.remove("is-valid");
   siteUrlInput.classList.remove("is-valid");
