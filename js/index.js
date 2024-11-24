@@ -71,6 +71,7 @@ document.querySelector('.folderCaption').addEventListener('click', function(even
 
 })
 
+
 document.querySelector('.sitesCaption').addEventListener('click', function(event){
   foldersSection.classList.remove('d-block');
   foldersSection.classList.add('d-none')
@@ -82,7 +83,7 @@ function validate(e) {
   let siteRegex = {
     siteNameInput: /^[A-Za-z0-9]{3,}(?:[ ]?[A-Za-z0-9]+)*$/,
     siteUrlInput:
-    /^(?:(?:https?|ftp):\/\/)?(?:www\.)?[a-z0-9-]+(?:\.[a-z0-9-]+)+[^\s]*$/i
+    /(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?\/[a-zA-Z0-9]{2,}|((https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?)|(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})?/
   };
 
   if (siteRegex[e.id].test(e.value)) {
@@ -164,7 +165,7 @@ function displayFolders(arr) {
                     <tr>
                       <th scope="row">${arr[i].name}</th>
                       <td colspan="1">
-                        <button class="visit btn btn-sm" onclick="openFolder(this)"
+                        <button id="open" class="visit btn btn-sm" onclick="openFolder(${i})"
                           ><i class="fas fa-eye me-2"></i>Open</button
                         >
                       </td>
@@ -177,6 +178,46 @@ function displayFolders(arr) {
                 `;
   }
   foldersTable.innerHTML = foldersHtml;
+}
+
+function displayEachFolder(index){
+  let eachFolder = ``
+
+    eachFolder += 
+    
+    ` 
+          <thead>
+              <tr>
+                <th colspan="3">${folderList[index].name}</th>
+              </tr>
+          </thead>
+          <tbody id="eachFolderBody">
+            <tr>
+              <td>${folderList[index].listOfSites.name}</td>
+              <td>
+                <a href="https://${
+                  folderList[index].listOfSites.url}" class="visit btn btn-sm"
+                  ><i class="fas fa-eye me-2"></i>Visit</a
+                >
+              </td>
+              <td>
+                <button class="delete btn btn-sm btn-outline-danger">
+                  <i class="fas fa-trash-alt me-2"></i>Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+    `
+  eachFolderTable.innerHTML = eachFolder
+}
+
+function openFolder(index){
+  foldersSection.classList.remove('d-block');
+  foldersSection.classList.add('d-none')
+  eachFolderSection.classList.remove('d-none')
+  eachFolderSection.classList.add('d-block')
+
+  displayEachFolder(index)
 }
 
 
@@ -222,38 +263,3 @@ function checkDuplicate() {
   }
 }
 
-function displayEachFolder(arr){
-  let eachFolder = ``
-
-    eachFolder += ` <thead>
-                <tr>
-                  <th colspan="3">${arr.name}</th>
-                </tr>
-              </thead>
-              <tbody id="eachFolderBody">
-                <tr>
-                  <td>${arr.listOfSites.name}</td>
-                  <td>
-                    <a href="https://${
-                      arr.listOfSites.url}" class="visit btn btn-sm"
-                      ><i class="fas fa-eye me-2"></i>Visit</a
-                    >
-                  </td>
-                  <td>
-                    <button class="delete btn btn-sm btn-outline-danger">
-                      <i class="fas fa-trash-alt me-2"></i>Delete
-                    </button>
-                  </td>
-                </tr>
-              </tbody>`
-  
-  eachFolderTable.innerHTML = eachFolder
-}
-
-function openFolder(){
-  foldersSection.classList.remove('d-block');
-  foldersSection.classList.add('d-none')
-  eachFolderSection.classList.remove('d-none')
-  eachFolderSection.classList.add('d-block')
-  displayEachFolder()
-}
