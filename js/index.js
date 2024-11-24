@@ -66,17 +66,41 @@ document.querySelector('.folderCaption').addEventListener('click', function(even
   foldersSection.classList.remove('d-none');
   foldersSection.classList.add('d-block')
   allSitesSection.classList.remove('d-block')
-  allSitesSection.classList.add('d-none')
+  allSitesSection.classList.add('d-none');
+  eachFolderSection.classList.add('d-none');
+  eachFolderSection.classList.remove('d-block')
   displayFolders(folderList);
 
 })
-
 
 document.querySelector('.sitesCaption').addEventListener('click', function(event){
   foldersSection.classList.remove('d-block');
   foldersSection.classList.add('d-none')
   allSitesSection.classList.remove('d-none')
   allSitesSection.classList.add('d-block')
+  eachFolderSection.classList.add('d-none')
+  eachFolderSection.classList.remove('d-block')
+  displayFolders(folderList);
+
+})
+
+document.querySelector('.sitesTable').addEventListener('click', function(event){
+  foldersSection.classList.remove('d-none');
+  foldersSection.classList.add('d-block')
+  allSitesSection.classList.remove('d-block')
+  allSitesSection.classList.add('d-none');
+  eachFolderSection.classList.add('d-none');
+  eachFolderSection.classList.remove('d-block')
+})
+
+
+document.querySelector('.folderTable').addEventListener('click', function(event){
+  foldersSection.classList.remove('d-block');
+  foldersSection.classList.add('d-none')
+  allSitesSection.classList.remove('d-none')
+  allSitesSection.classList.add('d-block')
+  eachFolderSection.classList.add('d-none')
+  eachFolderSection.classList.remove('d-block')
 })
 
 function validate(e) {
@@ -180,44 +204,30 @@ function displayFolders(arr) {
   foldersTable.innerHTML = foldersHtml;
 }
 
-function displayEachFolder(index){
-  let eachFolder = ``
-
-    eachFolder += 
-    
-    ` 
-          <thead>
-              <tr>
-                <th colspan="3">${folderList[index].name}</th>
-              </tr>
-          </thead>
-          <tbody id="eachFolderBody">
-            <tr>
-              <td>${folderList[index].listOfSites.name}</td>
-              <td>
-                <a href="https://${
-                  folderList[index].listOfSites.url}" class="visit btn btn-sm"
-                  ><i class="fas fa-eye me-2"></i>Visit</a
-                >
-              </td>
-              <td>
-                <button class="delete btn btn-sm btn-outline-danger">
-                  <i class="fas fa-trash-alt me-2"></i>Delete
-                </button>
-              </td>
-            </tr>
-          </tbody>
-    `
-  eachFolderTable.innerHTML = eachFolder
+function displayEachFolder(index) {
+  let folder = folderList[index];
+  let eachFolderHtml = `<thead><tr><th colspan="3">${folder.name}</th></tr></thead>`;
+  folder.listOfSites.forEach((site, i) => {
+    eachFolderHtml += `
+      <tr>
+        <td>${site.name}</td>
+        <td><a href="https://${site.url}" class="visit btn btn-sm"><i class="fas fa-eye me-2"></i>Visit</a></td>
+        <td><button class="delete btn btn-sm btn-outline-danger" onclick="deleteSiteFromFolder(${index}, ${i})"><i class="fas fa-trash-alt me-2"></i>Delete</button></td>
+      </tr>
+    `;
+  });
+  eachFolderTable.innerHTML = eachFolderHtml;
 }
 
-function openFolder(index){
-  foldersSection.classList.remove('d-block');
-  foldersSection.classList.add('d-none')
-  eachFolderSection.classList.remove('d-none')
-  eachFolderSection.classList.add('d-block')
+function openFolder(index) {
+  allSitesSection.classList.remove('d-block');
+  allSitesSection.classList.add('d-none');
+  foldersSection.classList.remove("d-block");
+  foldersSection.classList.add("d-none");
+  eachFolderSection.classList.remove("d-none");
+  eachFolderSection.classList.add("d-block");
 
-  displayEachFolder(index)
+  displayEachFolder(index);
 }
 
 
@@ -262,4 +272,3 @@ function checkDuplicate() {
     }
   }
 }
-

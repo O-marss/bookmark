@@ -349,3 +349,11 @@ a:active{
 .sitesCaption{
   cursor: pointer;
 }
+
+.sitesTable{
+  cursor: pointer;
+}
+
+.folderTable{
+  cursor: pointer;
+}
